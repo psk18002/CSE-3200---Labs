@@ -15,8 +15,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor"
             android:label="@string/app_name"
+            android:screenOrientation="fullSensor"
             android:theme="@style/Theme.K2024_02_06_quiz_start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

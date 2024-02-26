@@ -2,7 +2,7 @@ package com.example.k2024_02_06_quiz_start
 
 import com.example.k2024_02_06_quiz_start.model.AllQuestions
 import com.example.k2024_02_06_quiz_start.controller.NextQuestion
-import com.example.k2024_02_06_quiz_start.controller.Score
+import com.example.k2024_02_06_quiz_start.model.Score
 
 import org.junit.Test
 import org.junit.Assert.assertEquals
