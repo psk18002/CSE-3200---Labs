@@ -2,6 +2,7 @@ package com.example.k2024_02_06_quiz_start
 
 import com.example.k2024_02_06_quiz_start.model.AllQuestions
 import com.example.k2024_02_06_quiz_start.controller.NextQuestion
+import com.example.k2024_02_06_quiz_start.model.Difficulty
 import com.example.k2024_02_06_quiz_start.model.Score
 
 import org.junit.Test
@@ -13,9 +14,9 @@ class ScoreTests {
         val score = Score()
 
         assertEquals(0, score.getScore())
-        score.incrementScore()
+        score.incrementScore(1.0);
         assertEquals(1, score.getScore())
-        score.incrementScore()
+        score.incrementScore(1.0)
         assertEquals(2, score.getScore())
     }
 
@@ -35,7 +36,7 @@ class ScoreTests {
         var question = allQuestions.getQuestion(questionNumber)
 
         if (question.answer == true) {
-            score.incrementScore()
+            score.incrementScore(1.0)
         }
 
         assertEquals(1, score.getScore())
