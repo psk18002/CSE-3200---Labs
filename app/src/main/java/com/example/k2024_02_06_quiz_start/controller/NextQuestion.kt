@@ -13,7 +13,7 @@ class NextQuestion {
     }
 
     fun getNextRandomQuestionNumber() : Int {
-        val getRand = (0 .. totalQuestions).random()
+        val getRand = (0 .. totalQuestions-1).random()
         return getRand
     }
 }

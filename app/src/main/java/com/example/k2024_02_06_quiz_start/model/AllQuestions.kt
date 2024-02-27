@@ -9,7 +9,8 @@ class AllQuestions {
         Question("There are seven seas.", true, Difficulty.EASY, false),
         Question("The composer of Antar No.7 is Lizst.", false, Difficulty.HARD, false),
         Question("The United States of America is located on North America.", true, Difficulty.EASY, false),
-        Question("1+1 equals", "2", Difficulty.EASY, true)
+        Question("1+1 equals", "2", Difficulty.EASY, true),
+        Question("Robert Hook first discovered and stipulated the laws of motion.", false, Difficulty.MEDIUM, true)
     )
 
     fun getNumberOfQuestions() : Int {
