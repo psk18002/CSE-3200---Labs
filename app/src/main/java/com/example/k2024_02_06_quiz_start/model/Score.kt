@@ -5,9 +5,7 @@ class Score{
     fun incrementTotalQuestions() {
         totalQuestions++
     }
-    fun updateScore(newScore: Double) {
-        score = newScore
-    }
+
     fun incrementScore(scoreChange : Double) {
         incrementTotalQuestions()
         score += scoreChange

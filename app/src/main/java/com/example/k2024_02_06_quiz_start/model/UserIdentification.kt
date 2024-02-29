@@ -1,6 +1,6 @@
 package com.example.k2024_02_06_quiz_start.model
 
-class UserIdentification() {
+class UserIdentification {
     private var name : String? = null
     val userScore = Score()
 

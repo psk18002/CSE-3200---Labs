@@ -11,11 +11,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -25,33 +22,27 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.k2024_02_06_quiz_start.ui.theme.K2024_02_06_quiz_startTheme
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.k2024_02_06_quiz_start.model.AllQuestions
 import com.example.k2024_02_06_quiz_start.controller.NextQuestion
 import com.example.k2024_02_06_quiz_start.controller.ScoreController
-import com.example.k2024_02_06_quiz_start.model.Score
+import com.example.k2024_02_06_quiz_start.model.AllQuestions
 import com.example.k2024_02_06_quiz_start.model.UserIdentification
+import com.example.k2024_02_06_quiz_start.ui.theme.K2024_02_06_quiz_startTheme
 import com.example.k2024_02_06_quiz_start.ui.theme.Pink40
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
-
-//val myStringList: List<String> = listOf("Alan", "Ada", "Charles", "Alonzo")
-//var index = 0
 
 class MainActivity : ComponentActivity() {
 
@@ -91,15 +82,16 @@ class MainActivity : ComponentActivity() {
                         user.setName((userName))
                         Spacer(modifier = Modifier.size(20.dp))
                         QuizComponent(user)
+                        //Text("Your Score is: " + score)
                     }
 
                 }
             }
         }
     }
-}
 
-val cardShape = RoundedCornerShape(size = 32.dp)
+
+}
 
 @Composable
 fun QuizComponent(uID : UserIdentification) {
@@ -113,9 +105,12 @@ fun QuizComponent(uID : UserIdentification) {
     var userTextAnswer by remember { mutableStateOf("") }
     var isAnswered by remember { mutableStateOf(false) }
 
+    val cardShape = RoundedCornerShape(size = 32.dp)
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .fillMaxHeight(0.45F)
             .border(
                 width = 2.dp,
                 color = Pink40,
@@ -125,7 +120,7 @@ fun QuizComponent(uID : UserIdentification) {
         colors = CardDefaults.cardColors()
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(20.dp),
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
             ) {
@@ -133,7 +128,8 @@ fun QuizComponent(uID : UserIdentification) {
         }
     }
 
-    Spacer(modifier = Modifier.size(60.dp))
+    Spacer(modifier = Modifier.fillMaxHeight(0.15F))
+
     Row(
         verticalAlignment = Alignment.Bottom,
     ) {
@@ -150,7 +146,7 @@ fun QuizComponent(uID : UserIdentification) {
                                 scoreController.difficultyIncrement(allQuestions.getQuestion(questionNumber).difficulty)
                                 userTextAnswer = ""
                             }
-                            isAnswered = true;
+                            isAnswered = true
 
                         }),
                         maxLines = 1
@@ -167,10 +163,13 @@ fun QuizComponent(uID : UserIdentification) {
                     isAnswered = true
 
                 },
-                    modifier = Modifier.size(90.dp, 70.dp)
+                    modifier = Modifier.size(160.dp, 50.dp)
                 ) {
-                    Text("True")
+                    Text("True", fontSize = 18.sp)
                 }
+
+                Spacer(modifier = Modifier.size(20.dp))
+
                 Button(onClick = {
                     if (!(answer as Boolean)) {
                         scoreController.difficultyIncrement(allQuestions.getQuestion(questionNumber).difficulty)
@@ -178,14 +177,15 @@ fun QuizComponent(uID : UserIdentification) {
                     isAnswered = true
 
                 },
-                    modifier = Modifier.size(90.dp, 70.dp)
+                    modifier = Modifier.size(160.dp, 50.dp)
                 ) {
-                    Text("False")
+                    Text("False", fontSize = 18.sp)
                 }
             }
         }
     }
 
+    Spacer(modifier = Modifier.size(10.dp))
 
     Row(
         verticalAlignment = Alignment.Bottom,
@@ -196,17 +196,35 @@ fun QuizComponent(uID : UserIdentification) {
             question = allQuestions.getQuestion(questionNumber).questionText
             answer = allQuestions.getQuestion(questionNumber).answer
             isAnswered = false
-        }) {
-            Text("Next Question")
+        },
+            modifier = Modifier.size(160.dp, 50.dp)
+
+        ) {
+            Text("Next", fontSize = 18.sp)
+        }
+
+        Spacer(modifier = Modifier.size(20.dp))
+
+        Button(onClick = {
+
+        },
+            modifier = Modifier.size(160.dp, 50.dp)
+
+            ) {
+            Text("Done", fontSize = 18.sp)
         }
     }
+
+    Spacer(modifier = Modifier.fillMaxHeight(0.20F))
+
     Row(
         verticalAlignment = Alignment.Bottom
     ) {
-        Text("Score: ${scoreController.getScore()}")
+        Text("Score: ${scoreController.getScore()}", fontSize = 20.sp)
         Spacer(modifier = Modifier.size(20.dp))
-        Text("User: ${uID.getName()}")
+        Text("User: ${uID.getName()}", fontSize = 20.sp)
     }
+
 }
 
 @Composable
